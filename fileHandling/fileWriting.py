@@ -1,4 +1,4 @@
-filename = "labels.lbl"
+filename = "labels.cfg"
 
 file = open(filename, "w+")
 
