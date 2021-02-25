@@ -1,9 +1,7 @@
 def mk_text_file(name):
-
-    # This read in or makes a new text based file
-
-    cfg_file = open(name, "w+")  # either accesses an existing file or creating a new one
-    return cfg_file
+    # This reads in or makes a new text based file
+    some_file = open(name, "w+")  # either accesses an existing file or creating a new one
+    return some_file
 
 def csv_to_matrix(location):
     from csv import reader

@@ -1,3 +1,19 @@
+def str_to_time(stri, interval):
+    timeInt = int(stri[0:2]) * 60 + int(stri[3:5]) - interval
+    hours = int(timeInt / 60)
+    minutes = timeInt % 60
+    if len(str(hours)) == 1:
+        hourStr = "0" + str(hours)
+    else:
+        hourStr = str(hours)
+    if len(str(minutes)) == 1:
+        minutesStr = "0" + str(minutes)
+    else:
+        minutesStr = str(minutes)
+    time = f"{hourStr}:{minutesStr}:{stri[6] + stri[7]}"
+    return time
+
+
 def popped_matrix(matrix, index):
     # accepts a matrix and an index and returns a matrix where
     # the value at the index of all sublists is popped
@@ -19,6 +35,21 @@ def matrix_to_config(matrix):
     return configString
 
 
+def interval_time(timearr, interval):
+    inTimeArr = ["Time"]
+    for i in range(1, len(timearr)):
+        inTimeArr.append(str_to_time(timearr[i], interval))
+    return inTimeArr
+
+
+def matrix_to_label(matrix, timearr, intervaltimearr, datearr, version, lablename):
+    cfg_str = f"Label Data File version {version}\n" \
+              f"{lablename} {datearr[1]}/{timearr[1]} {datearr[len(datearr)-1]}/{timearr[len(timearr)-1]}\n" \
+              f" Begin date/time    End date/time    Labelcode\n\n"
+    for i in range(1, len(matrix)):
+        cfg_str += f" {datearr[i]}/{intervaltimearr[i]}  {datearr[i]}/{timearr[i]}\n\n"
+    return cfg_str
+
 def get_date_time(matrix, index):
     # Creates an array with date times
     dateTime = []
@@ -37,7 +68,7 @@ def copy_arry(array):
 
 def get_date(arr, matrix):
     # Extracts the dates from date time array with form dd%m%yy
-    date = ["Time"]
+    date = ["Date"]
     for i in range(1, len(matrix)):
         dat = arr[i][0:8]
         date.append(dat)
@@ -45,7 +76,7 @@ def get_date(arr, matrix):
 
 
 def get_time(arr, matrix):
-    time = ["Date"]
+    time = ["Time"]
     for i in range(1, len(matrix)):
         t = arr[i][9:len(arr[i])]
         if len(arr[i]) == 16:
