@@ -1,0 +1,23 @@
+DAMSlinker
+
+Structure
+
+1. Takes in csv
+Problems to solve:
+	1. How to import csv and convert to matrix
+	2. How to handle xlx files with multiple spreasheets
+	3. handle multiple csv file (journal
+
+
+2. Makes matrix out of the file
+
+creates a config string structure from column names
+
+3. creates a lable string structure from matrix
+Problems to solve: Identify time and day and convert to
+                   time format used in DAMS lbl
+
+4. creates an lbl and a cfg file from the input.
+
+5. Build a simple user interface with tkinter
+

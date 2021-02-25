@@ -1,14 +1,20 @@
 from linkerFileCreation import *
 from formattingTools import *
 
+timeIndex = 0
+
 label_file = mk_text_file("Label Files/label1.lbl")
 config_file = mk_text_file("Label Files/config.cfg")
 
-df = csv_to_matrix("testData.csv")
+dataframe = csv_to_matrix("testData.csv")
 
-configMatrix = popped_matrix(df, 0)
+timeArr = get_date_time(dataframe, timeIndex)
+datMatrix = popped_matrix(dataframe, timeIndex)
 
-#lable_file.write("This is a labelFile")
-config_file.write(matrix_to_config(configMatrix))
+date = get_date(timeArr, datMatrix)
+time = get_time(timeArr, datMatrix)
 
+print(date)
+print(time)
 
+# config_file.write(matrix_to_config(datMatrix))
