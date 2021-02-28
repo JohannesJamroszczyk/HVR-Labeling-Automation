@@ -1,24 +1,44 @@
 from linkerFileCreation import *
 from formattingTools import *
 
-timeIndex = 0
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# These are the things that need to be indicated by the user
 
-lableName = "label.lbl"
-configName = "config.lbl"
+timeIndex = 2
+intervalMins = 10
+lableFileName = "label.lbl"
+configFileName = "label.cfg"
+lableVersion = 101
+csvFileLocation = "test.csv"
 
-label_file = mk_text_file(f"Label Files/{lableName}")
-config_file = mk_text_file(f"Label Files/{configName}")
 
-dataframe = csv_to_matrix("testData.csv")
+DamsStartTime = "12:48:59"
+DamsStartDate = "24-01-21"
+DamsEndTime = "00:58:53"
+DamsEndDate = "25-01-21"
 
-timeArr = get_date_time(dataframe, timeIndex)
-datMatrix = popped_matrix(dataframe, timeIndex)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+DamsStart = f"{DamsStartDate}/{DamsStartTime}"
+DamsEnd = f"{DamsEndDate}/{DamsEndTime}"
+
+label_file = mk_text_file(f"Label Files/{lableFileName}")
+config_file = mk_text_file(f"Label Files/{configFileName}")
+
+dataFrame = csv_to_matrix(csvFileLocation)
+
+timeArr = get_date_time(dataFrame, timeIndex)
+print(timeArr)
+datMatrix = popped_matrix(dataFrame, timeIndex)
+print(datMatrix)
+labelsNumbers = labelList(datMatrix)
+print(labelsNumbers)
 date = get_date(timeArr, datMatrix)
+print(date)
 time = get_time(timeArr, datMatrix)
+print(time)
 
-version = 101
+label_file.write(matrix_to_label(labelsNumbers, datMatrix, time, interval_time(time, intervalMins), date, lableVersion,
+                                 lableFileName, DamsStart, DamsEnd))
 
-print(matrix_to_label(datMatrix, time, interval_time(time, 10), date, version, lableName))
-
-# config_file.write(matrix_to_config(datMatrix))
+config_file.write(matrix_to_config(datMatrix))
