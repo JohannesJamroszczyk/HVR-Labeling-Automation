@@ -1,3 +1,8 @@
+# TO DO:
+
+# labelList FUNCTION NEEDS TO ACCOUNT FOR THE SAME LABELS IN MULTIPLE COLUMNS
+# Ass comments where appropriate
+
 def str_to_time(stri, interval):
     # This function takes in a time string of the format hh%mm%ss and return a time string that is x minutes earlier
     timeInt = int(stri[0:2]) * 60 + int(stri[3:5]) - interval  # converts hours and minutes to minute sum
@@ -23,7 +28,7 @@ def popped_matrix(matrix, index):
     return matrix
 
 
-def labelList(matrix):
+def labelList(matrix):  # THIS FUNCTION NEEDS TO ACCOUNT FOR THE SAME LABELS IN MULTIPLE COLUMNS
     labels = [[], []]
     number = 10
     for i in range(0, len(matrix[0])):
